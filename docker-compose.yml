@@ -1,0 +1,80 @@
+version: '3.3'
+services:
+
+    #Nginx Service
+    webserver:
+        image: nginx:alpine
+        container_name: 961webserver
+        restart: unless-stopped
+        tty: true
+        ports:
+            - '961:443'
+            - '61:80'
+        volumes:
+            - ./:/var/www
+            - ./docker/nginx/conf.d/:/etc/nginx/conf.d/
+        depends_on:
+            - app
+
+    #App Service
+    app:
+        image: 961_image
+        build:
+            context: .
+            dockerfile: ./docker/Dockerfile
+        container_name: 961_app
+        restart: unless-stopped
+        environment:
+            CONTAINER_ROLE: app
+            PHP_OPCACHE_VALIDATE_TIMESTAMPS: 1
+        volumes:
+            - ./:/var/www
+            - ./docker/php/local.ini:/usr/local/etc/php/php.ini
+            - ./docker/php/www.conf:/usr/local/etc/php-fpm.d/www.conf:cached
+            - ./docker/php/opcache.ini:/usr/local/etc/php/conf.d/opcache.ini
+        depends_on:
+            - db
+
+    # PgSQL
+    db:
+        image: postgres:14
+        restart: always
+        container_name: 961_db
+        ports:
+            - '5461:5432'
+        environment:
+            POSTGRES_DB: '961'
+            POSTGRES_USER: 'abay_assylkhan'
+            POSTGRES_PASSWORD: 'password961'
+        volumes:
+            - '961_volume:/var/lib/postgresql/data'
+
+    redis:
+        image: redis:4.0
+        container_name: 961_redis
+        ports:
+            - "6361:6379"
+        volumes:
+            - "961_redis_volume:/data"
+
+    #Supervisor
+    console_app:
+        image: 961_image
+        container_name: 961_console
+        environment:
+            CONTAINER_ROLE: console
+        restart: unless-stopped
+        volumes:
+            - ./:/var/www
+        depends_on:
+            - db
+            - redis
+#Volumes
+volumes:
+    961_volume:
+    961_pgadmin_volume:
+    961_redis_volume:
+
+networks:
+    look_network:
+        driver: bridge

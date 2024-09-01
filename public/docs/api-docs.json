@@ -1,0 +1,2083 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "961 Apart Docs",
+        "description": "Description to Api",
+        "version": "2.0"
+    },
+    "paths": {
+        "/api/v1/auth/register": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "User Register",
+                "operationId": "00bb7b7f2b364cea87cf66200f7ab7fb",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "first_name",
+                                    "last_name",
+                                    "password",
+                                    "password_confirmation",
+                                    "phone"
+                                ],
+                                "properties": {
+                                    "phone": {
+                                        "description": "User phone number",
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "description": "Password",
+                                        "type": "string"
+                                    },
+                                    "password_confirmation": {
+                                        "description": "Confirm Password",
+                                        "type": "string"
+                                    },
+                                    "first_name": {
+                                        "description": "Name",
+                                        "type": "string"
+                                    },
+                                    "last_name": {
+                                        "description": "Last name",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "example": {
+                                    "message": "Success",
+                                    "data": {
+                                        "user": {
+                                            "first_name": "Vasya",
+                                            "last_name": "Pupkin",
+                                            "phone": "77076753444",
+                                            "id": 3
+                                        },
+                                        "token": "2|bWbibKB1dgaTF5BCHi8YAPfiTqpU8bQyC34GB9D8d4f2221a"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/api/v1/auth/login": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Login",
+                "operationId": "090be67f68e00aa334fe66e4e6b896d0",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "phone",
+                                    "password"
+                                ],
+                                "properties": {
+                                    "phone": {
+                                        "description": "User phone number",
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "description": "Password",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "example": {
+                                    "message": "Success",
+                                    "data": {
+                                        "user": {
+                                            "first_name": "Vasya",
+                                            "last_name": "Pupkin",
+                                            "phone": "77076753444",
+                                            "id": 3
+                                        },
+                                        "token": "2|bWbibKB1dgaTF5BCHi8YAPfiTqpU8bQyC34GB9D8d4f2221a"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/api/v1/admin/address/all": {
+            "get": {
+                "tags": [
+                    "Address"
+                ],
+                "summary": "Get all",
+                "operationId": "109dd7e175900463fb4efadcd8a20ca6",
+                "responses": {
+                    "200": {
+                        "description": "Successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "example": {
+                                    "message": "Success",
+                                    "data": [
+                                        {
+                                            "address": "",
+                                            "longitude": "42.3",
+                                            "latitude": "69.123"
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not found"
+                    },
+                    "500": {
+                        "description": "Server Error"
+                    }
+                }
+            }
+        },
+        "/api/v1/admin/address/{buildingId}": {
+            "get": {
+                "tags": [
+                    "Address"
+                ],
+                "summary": "Find by Building Id",
+                "operationId": "ef71c9c67ea5fc12e27198543e895c0a",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Building id",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "example": {
+                                    "message": "Success",
+                                    "data": {
+                                        "address": "",
+                                        "longitude": "42.3",
+                                        "latitude": "69.123"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not found"
+                    },
+                    "500": {
+                        "description": "Server Error"
+                    }
+                }
+            }
+        },
+        "/api/v1/address/{buildingId}/update": {
+            "put": {
+                "tags": [
+                    "Address"
+                ],
+                "summary": "Update Address By Building",
+                "operationId": "597f1aa794181da6e75fcce81734305c",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Building id",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "address": {
+                                        "type": "string"
+                                    },
+                                    "longitude": {
+                                        "type": "integer"
+                                    },
+                                    "latitude": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "204": {
+                        "description": "Successfully"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/api/v1/address/{buildingId}/delete": {
+            "delete": {
+                "tags": [
+                    "Address"
+                ],
+                "summary": "Delete Address by BuildingId",
+                "operationId": "ece0bf0c8012e334b58e9fab3c97c0d9",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "BuildingId",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Successfully"
+                    },
+                    "404": {
+                        "description": "Not found"
+                    },
+                    "500": {
+                        "description": "Server Error"
+                    }
+                }
+            }
+        },
+        "/api/v1/advantage": {
+            "get": {
+                "tags": [
+                    "Advantage"
+                ],
+                "summary": "Get all",
+                "operationId": "9c7eae3000881e8abba9d640c8b16571",
+                "responses": {
+                    "200": {
+                        "description": "Successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "example": {
+                                    "message": "Success",
+                                    "data": [
+                                        {
+                                            "id": 1,
+                                            "title": "",
+                                            "description": "",
+                                            "photo": null,
+                                            "created_at": null,
+                                            "updated_at": null
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not found"
+                    },
+                    "500": {
+                        "description": "Server Error"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Advantage"
+                ],
+                "summary": "Create advantage",
+                "operationId": "b66d3799a61f853afe598d34cb30a709",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "square_from",
+                                    "square_to",
+                                    "number_floors",
+                                    "number_apartments",
+                                    "number_parking_spaces",
+                                    "photo",
+                                    "relations",
+                                    "address_info",
+                                    "layout_info",
+                                    "price_info"
+                                ],
+                                "properties": {
+                                    "title": {
+                                        "type": "string"
+                                    },
+                                    "description": {
+                                        "type": "integer"
+                                    },
+                                    "photo": {
+                                        "description": "Upload file",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "example": {
+                                    "message": "Success",
+                                    "data": {
+                                        "title": "",
+                                        "description": null,
+                                        "photo": "advantages/pnGQWDxHsR15YMBPcfas6mYPFquZZkEGOiRNnw1O.jpg",
+                                        "updated_at": "2024-09-01T06:20:03.000000Z",
+                                        "created_at": "2024-09-01T06:20:03.000000Z",
+                                        "id": 10
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/api/v1/advantage/{id}": {
+            "get": {
+                "tags": [
+                    "Advantage"
+                ],
+                "summary": "Retrieve Advantage by Id",
+                "operationId": "4800106f1df6bfcb9c3e84c7aeb63ae1",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Advantage id",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "example": {
+                                    "message": "Success",
+                                    "data": {
+                                        "title": "",
+                                        "description": null,
+                                        "photo": "landscapings/pnGQWDxHsR15YMBPcfas6mYPFquZZkEGOiRNnw1O.jpg",
+                                        "updated_at": "2024-09-01T06:20:03.000000Z",
+                                        "created_at": "2024-09-01T06:20:03.000000Z",
+                                        "id": 10
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not found"
+                    },
+                    "500": {
+                        "description": "Server Error"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Advantage"
+                ],
+                "summary": "Update Advantage",
+                "operationId": "dbed3b23dcf30af0aaa0b936d51b495e",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Advantage id",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "title",
+                                    "description"
+                                ],
+                                "properties": {
+                                    "title": {
+                                        "type": "string"
+                                    },
+                                    "description": {
+                                        "type": "integer"
+                                    },
+                                    "photo": {
+                                        "description": "Upload file",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "204": {
+                        "description": "Successfully"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Advantage"
+                ],
+                "summary": "Delete advantage by Id",
+                "operationId": "eb8a18c77ecfb89a00b2c37420ff3d7c",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Advantage id",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Successfully"
+                    },
+                    "404": {
+                        "description": "Not found"
+                    },
+                    "500": {
+                        "description": "Server Error"
+                    }
+                }
+            }
+        },
+        "/api/v1/building": {
+            "post": {
+                "tags": [
+                    "Buildings"
+                ],
+                "summary": "Create Building",
+                "operationId": "4828147850c02a05d15fcdc998f9dd0f",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "square_from",
+                                    "square_to",
+                                    "number_floors",
+                                    "number_apartments",
+                                    "number_parking_spaces",
+                                    "photo",
+                                    "relations",
+                                    "address_info",
+                                    "layout_info",
+                                    "price_info"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "square_from": {
+                                        "type": "integer"
+                                    },
+                                    "square_to": {
+                                        "type": "integer"
+                                    },
+                                    "number_floors": {
+                                        "type": "integer"
+                                    },
+                                    "number_apartments": {
+                                        "type": "integer"
+                                    },
+                                    "number_parking_spaces": {
+                                        "type": "integer"
+                                    },
+                                    "photo": {
+                                        "description": "Upload file",
+                                        "type": "string"
+                                    },
+                                    "relations": {
+                                        "properties": {
+                                            "technologies": {
+                                                "type": "array",
+                                                "items": {
+                                                    "properties": {
+                                                        "title": {
+                                                            "type": "string"
+                                                        },
+                                                        "id": {
+                                                            "type": "integer"
+                                                        }
+                                                    },
+                                                    "type": "object"
+                                                }
+                                            },
+                                            "advantages": {
+                                                "type": "array",
+                                                "items": {
+                                                    "properties": {
+                                                        "title": {
+                                                            "type": "string"
+                                                        },
+                                                        "id": {
+                                                            "type": "integer"
+                                                        }
+                                                    },
+                                                    "type": "object"
+                                                }
+                                            },
+                                            "landscapings": {
+                                                "type": "array",
+                                                "items": {
+                                                    "properties": {
+                                                        "title": {
+                                                            "type": "string"
+                                                        },
+                                                        "id": {
+                                                            "type": "integer"
+                                                        }
+                                                    },
+                                                    "type": "object"
+                                                }
+                                            },
+                                            "issuances": {
+                                                "type": "array",
+                                                "items": {
+                                                    "properties": {
+                                                        "title": {
+                                                            "type": "string"
+                                                        },
+                                                        "id": {
+                                                            "type": "integer"
+                                                        }
+                                                    },
+                                                    "type": "object"
+                                                }
+                                            }
+                                        },
+                                        "type": "object"
+                                    },
+                                    "address_info": {
+                                        "properties": {
+                                            "address": {
+                                                "type": "string"
+                                            },
+                                            "longitude": {
+                                                "type": "string"
+                                            },
+                                            "latitude": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "type": "object"
+                                    },
+                                    "price_info": {
+                                        "properties": {
+                                            "price_from": {
+                                                "type": "string"
+                                            },
+                                            "price_to": {
+                                                "type": "string"
+                                            },
+                                            "discount": {
+                                                "type": "string"
+                                            },
+                                            "installment": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "type": "object"
+                                    },
+                                    "layout_info": {
+                                        "type": "array",
+                                        "items": {
+                                            "properties": {
+                                                "square_from": {
+                                                    "type": "string"
+                                                },
+                                                "square_to": {
+                                                    "type": "string"
+                                                },
+                                                "rooms": {
+                                                    "type": "string"
+                                                },
+                                                "photo": {
+                                                    "description": "Upload photo",
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "location_info": {
+                                        "type": "array",
+                                        "items": {
+                                            "properties": {
+                                                "name": {
+                                                    "type": "string"
+                                                },
+                                                "description": {
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "example": {
+                                    "message": "Success",
+                                    "data": {
+                                        "name": "Town house",
+                                        "square_from": 150,
+                                        "square_to": 300,
+                                        "number_floors": 12,
+                                        "number_apartments": 140,
+                                        "number_parking_spaces": 200,
+                                        "photo": "buildings/ciMdg60pOHXzp8btdnZHJ2S8uOh2RvS0z910bqa5.jpg",
+                                        "id": 16
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/api/v1/building/{id}": {
+            "put": {
+                "tags": [
+                    "Buildings"
+                ],
+                "summary": "Update Building",
+                "operationId": "3ffb13205e3fb6d2acc26475ef61a8c8",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Building Id",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "square_from",
+                                    "square_to",
+                                    "number_floors",
+                                    "number_apartments",
+                                    "number_parking_spaces",
+                                    "photo",
+                                    "relations",
+                                    "address_info",
+                                    "layout_info",
+                                    "price_info"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "square_from": {
+                                        "type": "integer"
+                                    },
+                                    "square_to": {
+                                        "type": "integer"
+                                    },
+                                    "number_floors": {
+                                        "type": "integer"
+                                    },
+                                    "number_apartments": {
+                                        "type": "integer"
+                                    },
+                                    "number_parking_spaces": {
+                                        "type": "integer"
+                                    },
+                                    "photo": {
+                                        "description": "Upload file",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "204": {
+                        "description": "Successfully"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Buildings"
+                ],
+                "summary": "Delete Building",
+                "operationId": "51962b44b14bdcdfdf61212611bb2ae2",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Building Id",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Successfully"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/api/v1/house-class": {
+            "get": {
+                "tags": [
+                    "HouseClass"
+                ],
+                "summary": "Get all",
+                "operationId": "f1c57e465f8056e28a139acda9b35640",
+                "responses": {
+                    "200": {
+                        "description": "Successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "example": {
+                                    "message": "Success",
+                                    "data": [
+                                        {
+                                            "id": 1,
+                                            "title": ""
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not found"
+                    },
+                    "500": {
+                        "description": "Server Error"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "HouseClass"
+                ],
+                "summary": "Create HouseClass",
+                "operationId": "bb28e081c13ac8effb10c913fced6c25",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "title"
+                                ],
+                                "properties": {
+                                    "title": {
+                                        "type": "string"
+                                    },
+                                    "published": {
+                                        "type": "boolean"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "example": {
+                                    "message": "Success",
+                                    "data": {
+                                        "title": "",
+                                        "id": 10
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/api/v1/house-class/{id}": {
+            "get": {
+                "tags": [
+                    "HouseClass"
+                ],
+                "summary": "Retrieve HouseClass by Id",
+                "operationId": "cd8089154ddcb8ac919a595280142ec9",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "HouseClass id",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "example": {
+                                    "message": "Success",
+                                    "data": {
+                                        "title": ""
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not found"
+                    },
+                    "500": {
+                        "description": "Server Error"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "HouseClass"
+                ],
+                "summary": "Update HouseClass",
+                "operationId": "3bed728c4ba379a8f8b36e0dcb8f0ca3",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "HouseClass id",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "title"
+                                ],
+                                "properties": {
+                                    "title": {
+                                        "type": "string"
+                                    },
+                                    "published": {
+                                        "type": "boolean"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "204": {
+                        "description": "Successfully"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "HouseClass"
+                ],
+                "summary": "Delete HouseClass by Id",
+                "operationId": "46e504bebadd0a5faecef0e17eeeeb48",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "HouseClass id",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Successfully"
+                    },
+                    "404": {
+                        "description": "Not found"
+                    },
+                    "500": {
+                        "description": "Server Error"
+                    }
+                }
+            }
+        },
+        "/api/v1/landscaping": {
+            "get": {
+                "tags": [
+                    "Landscaping"
+                ],
+                "summary": "Get all",
+                "operationId": "5be134337c2c83e1b99532657bc128b9",
+                "responses": {
+                    "200": {
+                        "description": "Successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "example": {
+                                    "message": "Success",
+                                    "data": [
+                                        {
+                                            "id": 1,
+                                            "title": "Единый ключ доступа",
+                                            "description": "",
+                                            "photo": null,
+                                            "created_at": null,
+                                            "updated_at": null
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not found"
+                    },
+                    "500": {
+                        "description": "Server Error"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Landscaping"
+                ],
+                "summary": "Create Landscaping",
+                "operationId": "6b0bb105018626b417849eb006325c74",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "square_from",
+                                    "square_to",
+                                    "number_floors",
+                                    "number_apartments",
+                                    "number_parking_spaces",
+                                    "photo",
+                                    "relations",
+                                    "address_info",
+                                    "layout_info",
+                                    "price_info"
+                                ],
+                                "properties": {
+                                    "title": {
+                                        "type": "string"
+                                    },
+                                    "description": {
+                                        "type": "integer"
+                                    },
+                                    "photo": {
+                                        "description": "Upload file",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "example": {
+                                    "message": "Success",
+                                    "data": {
+                                        "title": "",
+                                        "description": null,
+                                        "photo": "landscapings/pnGQWDxHsR15YMBPcfas6mYPFquZZkEGOiRNnw1O.jpg",
+                                        "updated_at": "2024-09-01T06:20:03.000000Z",
+                                        "created_at": "2024-09-01T06:20:03.000000Z",
+                                        "id": 10
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/api/v1/landscaping/{id}": {
+            "get": {
+                "tags": [
+                    "Landscaping"
+                ],
+                "summary": "Retrieve Landscaping by Id",
+                "operationId": "be7e617bc36a85586d4675ecb6ab1553",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Landscaping id",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "example": {
+                                    "message": "Success",
+                                    "data": {
+                                        "title": "",
+                                        "description": null,
+                                        "photo": "landscapings/pnGQWDxHsR15YMBPcfas6mYPFquZZkEGOiRNnw1O.jpg",
+                                        "updated_at": "2024-09-01T06:20:03.000000Z",
+                                        "created_at": "2024-09-01T06:20:03.000000Z",
+                                        "id": 10
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not found"
+                    },
+                    "500": {
+                        "description": "Server Error"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Landscaping"
+                ],
+                "summary": "Update Landscaping",
+                "operationId": "ed84b1b44e7f28b1966cfc905d55e94d",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Landscaping id",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "title",
+                                    "description"
+                                ],
+                                "properties": {
+                                    "title": {
+                                        "type": "string"
+                                    },
+                                    "description": {
+                                        "type": "integer"
+                                    },
+                                    "photo": {
+                                        "description": "Upload file",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "204": {
+                        "description": "Successfully"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Landscaping"
+                ],
+                "summary": "Delete landscaping by Id",
+                "operationId": "2ce473e8d8804f74f619bfb68f006191",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Landscaping id",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Successfully"
+                    },
+                    "404": {
+                        "description": "Not found"
+                    },
+                    "500": {
+                        "description": "Server Error"
+                    }
+                }
+            }
+        },
+        "/api/v1/admin/layout/all": {
+            "get": {
+                "tags": [
+                    "Layout"
+                ],
+                "summary": "Get all",
+                "operationId": "1ef5d94801e5428162ec310a59f9ba04",
+                "responses": {
+                    "200": {
+                        "description": "Successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "example": {
+                                    "message": "Success",
+                                    "data": [
+                                        {
+                                            "square_from": "10",
+                                            "square_to": "100",
+                                            "rooms": "2",
+                                            "photo": "layouts/"
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not found"
+                    },
+                    "500": {
+                        "description": "Server Error"
+                    }
+                }
+            }
+        },
+        "/api/v1/admin/layout/{buildingId}": {
+            "get": {
+                "tags": [
+                    "Layout"
+                ],
+                "summary": "Find by Building Id",
+                "operationId": "e41e51e4c03b602c353ec19a8e3ebe86",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Building id",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "example": {
+                                    "message": "Success",
+                                    "data": {
+                                        "square_from": "10",
+                                        "square_to": "100",
+                                        "rooms": "2",
+                                        "photo": "layouts/"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not found"
+                    },
+                    "500": {
+                        "description": "Server Error"
+                    }
+                }
+            }
+        },
+        "/api/v1/layout/{id}/update": {
+            "put": {
+                "tags": [
+                    "Layout"
+                ],
+                "summary": "Update Layout By Building",
+                "operationId": "71079dc71c611a06a0a041e1ea9808a6",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Building id",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "building_id"
+                                ],
+                                "properties": {
+                                    "building_id": {
+                                        "type": "integer"
+                                    },
+                                    "square_from": {
+                                        "type": "integer"
+                                    },
+                                    "square_to": {
+                                        "type": "integer"
+                                    },
+                                    "rooms": {
+                                        "type": "integer"
+                                    },
+                                    "photo": {
+                                        "description": "Upload file",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "204": {
+                        "description": "Successfully"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/api/v1/layout/{id}/delete": {
+            "delete": {
+                "tags": [
+                    "Layout"
+                ],
+                "summary": "Delete Layout by id",
+                "operationId": "3eb23f6e6029aa9e4543d07516ded6ce",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Successfully"
+                    },
+                    "404": {
+                        "description": "Not found"
+                    },
+                    "500": {
+                        "description": "Server Error"
+                    }
+                }
+            }
+        },
+        "/api/v1/admin/location/all": {
+            "get": {
+                "tags": [
+                    "Location"
+                ],
+                "summary": "Get all",
+                "operationId": "828828f91cbf1568d752db5c4b4b9ae4",
+                "responses": {
+                    "200": {
+                        "description": "Successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "example": {
+                                    "message": "Success",
+                                    "data": [
+                                        {
+                                            "name": "Test",
+                                            "description": "test"
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not found"
+                    },
+                    "500": {
+                        "description": "Server Error"
+                    }
+                }
+            }
+        },
+        "/api/v1/admin/location/{buildingId}": {
+            "get": {
+                "tags": [
+                    "Location"
+                ],
+                "summary": "Find by Building Id",
+                "operationId": "09bae9d64cb95559a4cd2ea9d3d05103",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Building id",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "example": {
+                                    "message": "Success",
+                                    "data": {
+                                        "name": "Test",
+                                        "description": "test"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not found"
+                    },
+                    "500": {
+                        "description": "Server Error"
+                    }
+                }
+            }
+        },
+        "/api/v1/location/{id}/update": {
+            "put": {
+                "tags": [
+                    "Location"
+                ],
+                "summary": "Update Location By Building",
+                "operationId": "009aacedba84baaf1c55fd4aa3ce10e9",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Building id",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "building_id"
+                                ],
+                                "properties": {
+                                    "building_id": {
+                                        "type": "integer"
+                                    },
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "description": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "204": {
+                        "description": "Successfully"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/api/v1/location/{Id}/delete": {
+            "delete": {
+                "tags": [
+                    "Location"
+                ],
+                "summary": "Delete Location by Id",
+                "operationId": "b47fcbea077f3523599b9dd444dcfa2f",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Successfully"
+                    },
+                    "404": {
+                        "description": "Not found"
+                    },
+                    "500": {
+                        "description": "Server Error"
+                    }
+                }
+            }
+        },
+        "/api/v1/admin/price/all": {
+            "get": {
+                "tags": [
+                    "Price"
+                ],
+                "summary": "Get all",
+                "operationId": "39f99106cba199681ba3546cd046ca1b",
+                "responses": {
+                    "200": {
+                        "description": "Successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "example": {
+                                    "message": "Success",
+                                    "data": [
+                                        {
+                                            "id": 1,
+                                            "price_from": "10",
+                                            "price_to": "100",
+                                            "discount": 20,
+                                            "installment": 0
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not found"
+                    },
+                    "500": {
+                        "description": "Server Error"
+                    }
+                }
+            }
+        },
+        "/api/v1/admin/price/{buildingId}": {
+            "get": {
+                "tags": [
+                    "Price"
+                ],
+                "summary": "Find by Building Id",
+                "operationId": "138c94738e5c747485acb69b34f26112",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Building id",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "example": {
+                                    "message": "Success",
+                                    "data": {
+                                        "id": 1,
+                                        "price_from": "10",
+                                        "price_to": "100",
+                                        "discount": 20,
+                                        "installment": 0
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not found"
+                    },
+                    "500": {
+                        "description": "Server Error"
+                    }
+                }
+            }
+        },
+        "/api/v1/price/{buildingId}/update": {
+            "put": {
+                "tags": [
+                    "Price"
+                ],
+                "summary": "Update Price By Building",
+                "operationId": "f44d4657611257e24538e5bdb61ebdf0",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Building id",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "price_from": {
+                                        "type": "string"
+                                    },
+                                    "price_to": {
+                                        "type": "string"
+                                    },
+                                    "discount": {
+                                        "type": "string"
+                                    },
+                                    "installment": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "204": {
+                        "description": "Successfully"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/api/v1/price/{buildingId}/delete": {
+            "delete": {
+                "tags": [
+                    "Price"
+                ],
+                "summary": "Delete Price by BuildingId",
+                "operationId": "3e34b40a1bbd29037747a270de91659d",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "BuildingId",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Successfully"
+                    },
+                    "404": {
+                        "description": "Not found"
+                    },
+                    "500": {
+                        "description": "Server Error"
+                    }
+                }
+            }
+        },
+        "/api/v1/technology": {
+            "get": {
+                "tags": [
+                    "Technology"
+                ],
+                "summary": "Get all",
+                "operationId": "b7567e85ccbf7d2788045857d3a20956",
+                "responses": {
+                    "200": {
+                        "description": "Successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "example": {
+                                    "message": "Success",
+                                    "data": [
+                                        {
+                                            "id": 1,
+                                            "title": "Единый ключ доступа",
+                                            "description": "",
+                                            "photo": null,
+                                            "created_at": null,
+                                            "updated_at": null
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not found"
+                    },
+                    "500": {
+                        "description": "Server Error"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Technology"
+                ],
+                "summary": "Create Technology",
+                "operationId": "a69474a8c8e986f6417bed674247a125",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "title",
+                                    "description"
+                                ],
+                                "properties": {
+                                    "title": {
+                                        "type": "string"
+                                    },
+                                    "description": {
+                                        "type": "integer"
+                                    },
+                                    "photo": {
+                                        "description": "Upload file",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "example": {
+                                    "message": "Success",
+                                    "data": {
+                                        "title": "Camera",
+                                        "description": null,
+                                        "photo": "technologies/pnGQWDxHsR15YMBPcfas6mYPFquZZkEGOiRNnw1O.jpg",
+                                        "updated_at": "2024-09-01T06:20:03.000000Z",
+                                        "created_at": "2024-09-01T06:20:03.000000Z",
+                                        "id": 10
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/api/v1/technology/{id}": {
+            "get": {
+                "tags": [
+                    "Technology"
+                ],
+                "summary": "Retrieve Technology by Id",
+                "operationId": "c5b21e599fc7f09a319fa5102177959d",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Technology id",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "example": {
+                                    "message": "Success",
+                                    "data": {
+                                        "title": "Camera",
+                                        "description": null,
+                                        "photo": "technologies/pnGQWDxHsR15YMBPcfas6mYPFquZZkEGOiRNnw1O.jpg",
+                                        "updated_at": "2024-09-01T06:20:03.000000Z",
+                                        "created_at": "2024-09-01T06:20:03.000000Z",
+                                        "id": 10
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not found"
+                    },
+                    "500": {
+                        "description": "Server Error"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Technology"
+                ],
+                "summary": "Update Technology",
+                "operationId": "2537389c0f6d14cc1c9330f71c674db8",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Technology id",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "title",
+                                    "description"
+                                ],
+                                "properties": {
+                                    "title": {
+                                        "type": "string"
+                                    },
+                                    "description": {
+                                        "type": "integer"
+                                    },
+                                    "photo": {
+                                        "description": "Upload file",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "204": {
+                        "description": "Successfully"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Technology"
+                ],
+                "summary": "Delete Technology by Id",
+                "operationId": "4ba5b3671afde3da1b920edc6896cf78",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Technology id",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Successfully"
+                    },
+                    "404": {
+                        "description": "Not found"
+                    },
+                    "500": {
+                        "description": "Server Error"
+                    }
+                }
+            }
+        },
+        "/api/v1/building/all": {
+            "get": {
+                "tags": [
+                    "Buildings"
+                ],
+                "summary": "Get all",
+                "operationId": "a7b60f546ffe40dd728fc743fc8c4f95",
+                "responses": {
+                    "200": {
+                        "description": "Successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "example": {
+                                    "message": "Success",
+                                    "data": [
+                                        {
+                                            "id": 1,
+                                            "name": "Town house",
+                                            "square_from": "150",
+                                            "square_to": "300",
+                                            "number_floors": 12,
+                                            "number_apartments": 140,
+                                            "number_parking_spaces": 200,
+                                            "is_mock": false,
+                                            "photo": "buildings/T1rx1kz7khqGlNz2C0EHu3hMs3XOurCMfPzOcOYs.jpg"
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not found"
+                    },
+                    "500": {
+                        "description": "Server Error"
+                    }
+                }
+            }
+        },
+        "/api/v1/building/{id}/find": {
+            "get": {
+                "tags": [
+                    "Buildings"
+                ],
+                "summary": "Retrieve Building by Id",
+                "operationId": "a97151b51cb2f363cb812e362bb85b70",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Building id",
+                        "required": true
+                    },
+                    {
+                        "name": "include",
+                        "in": "query",
+                        "description": "?include=address,locations,layouts,price",
+                        "required": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "example": {
+                                    "message": "Success",
+                                    "data": {
+                                        "id": 14,
+                                        "name": "Town house",
+                                        "square_from": "150",
+                                        "square_to": "300",
+                                        "number_floors": 12,
+                                        "number_apartments": 140,
+                                        "number_parking_spaces": 200,
+                                        "is_mock": false,
+                                        "photo": "buildings/JpbCqIijlhiQxTVhKf3NPnrdQqO460v3treGyUZz.jpg",
+                                        "address": {
+                                            "id": 5,
+                                            "building_id": 14,
+                                            "address": "rteet",
+                                            "longitude": "69.12",
+                                            "latitude": "42.11"
+                                        },
+                                        "locations": [
+                                            {
+                                                "id": 1,
+                                                "building_id": 14,
+                                                "name": "Дендро парк в близи",
+                                                "description": "Самый большой парк"
+                                            }
+                                        ],
+                                        "layouts": [
+                                            {
+                                                "id": 4,
+                                                "building_id": 14,
+                                                "photo": "layouts/GMexOjnX8DzaThxnBtZ9FxvX9QuLyfhBS1gbhT1M.jpg",
+                                                "square_from": "40",
+                                                "square_to": "110",
+                                                "rooms": 4
+                                            }
+                                        ],
+                                        "prices": {
+                                            "id": 4,
+                                            "building_id": 14,
+                                            "price_from": "100",
+                                            "price_to": "1000",
+                                            "discount": "35",
+                                            "installment": "0"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not found"
+                    },
+                    "500": {
+                        "description": "Server Error"
+                    }
+                }
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Auth",
+            "description": "Auth"
+        },
+        {
+            "name": "Address",
+            "description": "Address"
+        },
+        {
+            "name": "Advantage",
+            "description": "Advantage"
+        },
+        {
+            "name": "Buildings",
+            "description": "Buildings"
+        },
+        {
+            "name": "HouseClass",
+            "description": "HouseClass"
+        },
+        {
+            "name": "Landscaping",
+            "description": "Landscaping"
+        },
+        {
+            "name": "Layout",
+            "description": "Layout"
+        },
+        {
+            "name": "Location",
+            "description": "Location"
+        },
+        {
+            "name": "Price",
+            "description": "Price"
+        },
+        {
+            "name": "Technology",
+            "description": "Technology"
+        }
+    ]
+}
